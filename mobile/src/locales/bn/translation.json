@@ -1,0 +1,31 @@
+{
+  "appName": "নূর",
+  "home": {
+    "greeting": "আস-সালামু আলাইকুম",
+    "continueReading": "পড়া চালিয়ে যান",
+    "continueListening": "শোনা চালিয়ে যান",
+    "prayerTimes": "নামাজের সময়",
+    "qibla": "কিবলা",
+    "calendar": "ইসলামিক ক্যালেন্ডার",
+    "dailyVerse": "আজকের আয়াত"
+  },
+  "prayer": {
+    "title": "নামাজের সময়",
+    "fajr": "ফজর",
+    "sunrise": "সূর্যোদয়",
+    "dhuhr": "যোহর",
+    "asr": "আসর",
+    "maghrib": "মাগরিব",
+    "isha": "এশা",
+    "nextPrayer": "পরবর্তী নামাজ",
+    "in": "এর মধ্যে",
+    "fetchingLocation": "আপনার অবস্থান খোঁজা হচ্ছে..."
+  },
+  "onboarding": {
+    "welcome": "নূরে স্বাগতম",
+    "subtitle": "আপনার সম্পূর্ণ ইসলামিক সঙ্গী",
+    "selectLanguage": "আপনার ভাষা নির্বাচন করুন",
+    "getStarted": "শুরু করুন",
+    "next": "পরবর্তী"
+  }
+}

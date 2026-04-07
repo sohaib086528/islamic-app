@@ -1,0 +1,31 @@
+{
+  "appName": "नूर",
+  "home": {
+    "greeting": "अस्सलामु अलैकुम",
+    "continueReading": "पढ़ना जारी रखें",
+    "continueListening": "सुनना जारी रखें",
+    "prayerTimes": "नमाज़ के वक़्त",
+    "qibla": "क़िबला",
+    "calendar": "इस्लामी कैलेंडर",
+    "dailyVerse": "आज की आयत"
+  },
+  "prayer": {
+    "title": "नमाज़ के वक़्त",
+    "fajr": "फ़ज्र",
+    "sunrise": "सूर्योदय",
+    "dhuhr": "ज़ुहर",
+    "asr": "अस्र",
+    "maghrib": "मग़रिब",
+    "isha": "इशा",
+    "nextPrayer": "अगली नमाज़",
+    "in": "में",
+    "fetchingLocation": "आपकी लोकेशन ढूंढी जा रही है..."
+  },
+  "onboarding": {
+    "welcome": "नूर में आपका स्वागत है",
+    "subtitle": "आपका पूर्ण इस्लामी साथी",
+    "selectLanguage": "अपनी भाषा चुनें",
+    "getStarted": "शुरू करें",
+    "next": "अगला"
+  }
+}

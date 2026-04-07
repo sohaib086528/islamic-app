@@ -1,0 +1,55 @@
+{
+  "appName": "Noor",
+  "home": {
+    "greeting": "Assalamu Alaikum",
+    "continueReading": "Continue Reading",
+    "continueListening": "Continue Listening",
+    "prayerTimes": "Prayer Times",
+    "qibla": "Qibla",
+    "calendar": "Islamic Calendar",
+    "dailyVerse": "Verse of the Day"
+  },
+  "quran": {
+    "title": "القرآن الكريم",
+    "surahs": "Surahs",
+    "juz": "Juz",
+    "bookmarks": "Bookmarks",
+    "search": "Search",
+    "ayahs": "ayahs",
+    "verses": "verses"
+  },
+  "prayer": {
+    "title": "Prayer Times",
+    "fajr": "Fajr",
+    "sunrise": "Sunrise",
+    "dhuhr": "Dhuhr",
+    "asr": "Asr",
+    "maghrib": "Maghrib",
+    "isha": "Isha",
+    "nextPrayer": "Next Prayer",
+    "in": "in",
+    "fetchingLocation": "Fetching your location..."
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": "Theme",
+    "language": "Language",
+    "translation": "Translation",
+    "reciter": "Reciter",
+    "prayerMethod": "Prayer Method",
+    "notifications": "Notifications",
+    "arabicScript": "Arabic Script",
+    "tajweed": "Tajweed Mode"
+  },
+  "onboarding": {
+    "welcome": "Welcome to Noor",
+    "subtitle": "Your complete Islamic companion",
+    "selectLanguage": "Select your language",
+    "selectTheme": "Choose your theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System Default",
+    "getStarted": "Get Started",
+    "next": "Next"
+  }
+}

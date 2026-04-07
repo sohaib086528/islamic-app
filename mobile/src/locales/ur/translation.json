@@ -1,0 +1,55 @@
+{
+  "appName": "نور",
+  "home": {
+    "greeting": "السلام علیکم",
+    "continueReading": "پڑھنا جاری رکھیں",
+    "continueListening": "سننا جاری رکھیں",
+    "prayerTimes": "نماز کے اوقات",
+    "qibla": "قبلہ",
+    "calendar": "اسلامی کیلنڈر",
+    "dailyVerse": "آج کی آیت"
+  },
+  "quran": {
+    "title": "القرآن الكريم",
+    "surahs": "سورتیں",
+    "juz": "پارہ",
+    "bookmarks": "بک مارکس",
+    "search": "تلاش",
+    "ayahs": "آیات",
+    "verses": "آیات"
+  },
+  "prayer": {
+    "title": "نماز کے اوقات",
+    "fajr": "فجر",
+    "sunrise": "طلوع آفتاب",
+    "dhuhr": "ظہر",
+    "asr": "عصر",
+    "maghrib": "مغرب",
+    "isha": "عشاء",
+    "nextPrayer": "اگلی نماز",
+    "in": "میں",
+    "fetchingLocation": "آپ کی لوکیشن معلوم ہو رہی ہے..."
+  },
+  "settings": {
+    "title": "ترتیبات",
+    "theme": "تھیم",
+    "language": "زبان",
+    "translation": "ترجمہ",
+    "reciter": "قاری",
+    "prayerMethod": "حساب کا طریقہ",
+    "notifications": "اطلاعات",
+    "arabicScript": "عربی رسم الخط",
+    "tajweed": "تجوید موڈ"
+  },
+  "onboarding": {
+    "welcome": "نور میں خوش آمدید",
+    "subtitle": "آپ کا مکمل اسلامی ساتھی",
+    "selectLanguage": "اپنی زبان منتخب کریں",
+    "selectTheme": "اپنا تھیم چنیں",
+    "light": "روشن",
+    "dark": "تاریک",
+    "system": "سسٹم ڈیفالٹ",
+    "getStarted": "شروع کریں",
+    "next": "اگلا"
+  }
+}
