@@ -1,5 +1,5 @@
 {
-  "appName": "Noor",
+  "appName": "Islamic App",
   "home": {
     "greeting": "Assalamu Alaikum",
     "continueReading": "Continue Reading",
@@ -42,7 +42,7 @@
     "tajweed": "Tajweed Mode"
   },
   "onboarding": {
-    "welcome": "Welcome to Noor",
+    "welcome": "Welcome to Islamic App",
     "subtitle": "Your complete Islamic companion",
     "selectLanguage": "Select your language",
     "selectTheme": "Choose your theme",

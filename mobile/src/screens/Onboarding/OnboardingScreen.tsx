@@ -39,7 +39,7 @@ export default function OnboardingScreen() {
         <View style={styles.content}>
           <Text style={styles.bismillah}>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</Text>
           <Text style={styles.appName}>نور</Text>
-          <Text style={styles.title}>Welcome to Noor</Text>
+          <Text style={styles.title}>Welcome to Islamic App</Text>
           <Text style={styles.subtitle}>Your complete Islamic companion</Text>
 
           <Text style={styles.sectionLabel}>SELECT YOUR LANGUAGE</Text>

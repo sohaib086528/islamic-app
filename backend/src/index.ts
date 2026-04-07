@@ -24,7 +24,7 @@ app.use(globalLimiter);
 app.get('/health', (_req, res) => {
   res.json({
     status: 'ok',
-    service: 'noor-api',
+    service: 'islamic-app-api',
     env: config.NODE_ENV,
     timestamp: new Date().toISOString(),
   });
@@ -36,5 +36,5 @@ app.use('/api/prayer', prayerRoutes);
 app.use(errorHandler);
 
 app.listen(config.PORT, () => {
-  console.log(`Noor API running on port ${config.PORT}`);
+  console.log(`Islamic App API running on port ${config.PORT}`);
 });
