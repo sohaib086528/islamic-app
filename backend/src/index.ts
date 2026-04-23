@@ -7,6 +7,7 @@ import { globalLimiter } from './middleware/rateLimiter';
 import { errorHandler } from './middleware/errorHandler';
 import quranRoutes from './routes/quranRoutes';
 import prayerRoutes from './routes/prayerRoutes';
+import qiblaRoutes from './routes/qiblaRoutes';
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.get('/health', (_req, res) => {
 
 app.use('/api/quran', quranRoutes);
 app.use('/api/prayer', prayerRoutes);
+app.use('/api/qibla', qiblaRoutes);
 
 app.use(errorHandler);
 

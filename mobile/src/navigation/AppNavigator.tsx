@@ -7,29 +7,26 @@ import { useSettingsStore } from '../store/settingsStore';
 
 import HomeScreen from '../screens/Home/HomeScreen';
 import QuranScreen from '../screens/Quran/QuranScreen';
+import SurahReaderScreen from '../screens/Quran/SurahReaderScreen';
+import AudioPlayerScreen from '../screens/Audio/AudioPlayerScreen';
 import PrayerScreen from '../screens/Prayer/PrayerScreen';
 import QiblaScreen from '../screens/Qibla/QiblaScreen';
 import CalendarScreen from '../screens/Calendar/CalendarScreen';
 import SettingsScreen from '../screens/Settings/SettingsScreen';
+import BookmarksScreen from '../screens/Bookmarks/BookmarksScreen';
+import SearchScreen from '../screens/Search/SearchScreen';
 import OnboardingScreen from '../screens/Onboarding/OnboardingScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-function TabIcon({ label, focused }: { label: string; focused: boolean }) {
-  const icons: Record<string, string> = {
-    Home: '🏠',
-    Quran: '📖',
-    Prayer: '🕌',
-    Qibla: '🧭',
-    Settings: '⚙️',
-  };
-  return (
-    <Text style={{ fontSize: 20, opacity: focused ? 1 : 0.5 }}>
-      {icons[label] || '•'}
-    </Text>
-  );
-}
+const TAB_ICONS: Record<string, string> = {
+  Home: '🏠',
+  Quran: '📖',
+  Prayer: '🕌',
+  Qibla: '🧭',
+  Settings: '⚙️',
+};
 
 function MainTabs() {
   return (
@@ -46,12 +43,11 @@ function MainTabs() {
         },
         tabBarActiveTintColor: '#D4AF37',
         tabBarInactiveTintColor: '#8B949E',
-        tabBarLabelStyle: {
-          fontSize: 11,
-          fontWeight: '600',
-        },
+        tabBarLabelStyle: { fontSize: 11, fontWeight: '600' },
         tabBarIcon: ({ focused }) => (
-          <TabIcon label={route.name} focused={focused} />
+          <Text style={{ fontSize: 20, opacity: focused ? 1 : 0.5 }}>
+            {TAB_ICONS[route.name] || '•'}
+          </Text>
         ),
       })}
     >
@@ -64,6 +60,19 @@ function MainTabs() {
   );
 }
 
+function MainStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Tabs" component={MainTabs} />
+      <Stack.Screen name="SurahReader" component={SurahReaderScreen} />
+      <Stack.Screen name="AudioPlayer" component={AudioPlayerScreen} />
+      <Stack.Screen name="Bookmarks" component={BookmarksScreen} />
+      <Stack.Screen name="Search" component={SearchScreen} />
+      <Stack.Screen name="Calendar" component={CalendarScreen} />
+    </Stack.Navigator>
+  );
+}
+
 export default function AppNavigator() {
   const { hasCompletedOnboarding } = useSettingsStore();
 
@@ -73,7 +82,7 @@ export default function AppNavigator() {
         {!hasCompletedOnboarding ? (
           <Stack.Screen name="Onboarding" component={OnboardingScreen} />
         ) : (
-          <Stack.Screen name="Main" component={MainTabs} />
+          <Stack.Screen name="Main" component={MainStack} />
         )}
       </Stack.Navigator>
     </NavigationContainer>

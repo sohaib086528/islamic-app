@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "Quran Verse",
+    "slug": "quran-verse",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#0D1117"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "online.salahnsujood.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Quran Verse uses your location to show accurate prayer times and Qibla direction.",
+        "NSMotionUsageDescription": "Quran Verse uses your device compass to show Qibla direction."
+      }
+    },
+    "android": {
+      "package": "online.salahnsujood.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#0D1117"
+      },
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "VIBRATE",
+        "RECEIVE_BOOT_COMPLETED"
+      ]
+    },
+    "plugins": [
+      "expo-location",
+      "expo-notifications",
+      "expo-av",
+      "expo-sensors"
+    ]
+  }
+}

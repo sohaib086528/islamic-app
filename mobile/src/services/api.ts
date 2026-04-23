@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = __DEV__
-  ? 'http://localhost:3002/api'
-  : 'https://api.yourdomain.com/api';
+const BASE_URL = 'https://api.salahnsujood.online/api';
 
 export const apiClient = axios.create({
   baseURL: BASE_URL,

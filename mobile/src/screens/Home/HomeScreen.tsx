@@ -1,11 +1,6 @@
 import React from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  SafeAreaView,
+  View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView,
 } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
 import { prayerApi } from '../../services/api';
@@ -15,6 +10,8 @@ const QUICK_ACTIONS = [
   { label: 'Prayer Times', icon: '🕌', screen: 'Prayer' },
   { label: 'Qibla', icon: '🧭', screen: 'Qibla' },
   { label: 'Calendar', icon: '📅', screen: 'Calendar' },
+  { label: 'Bookmarks', icon: '🔖', screen: 'Bookmarks' },
+  { label: 'Search', icon: '🔍', screen: 'Search' },
 ];
 
 export default function HomeScreen({ navigation }: any) {
@@ -25,10 +22,7 @@ export default function HomeScreen({ navigation }: any) {
   });
 
   const gregorian = new Date().toLocaleDateString('en-GB', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
   });
 
   return (
@@ -46,7 +40,6 @@ export default function HomeScreen({ navigation }: any) {
         </View>
 
         <Text style={styles.sectionLabel}>QUICK ACCESS</Text>
-
         <View style={styles.grid}>
           {QUICK_ACTIONS.map((action) => (
             <TouchableOpacity
@@ -60,14 +53,11 @@ export default function HomeScreen({ navigation }: any) {
           ))}
         </View>
 
-        <Text style={styles.sectionLabel}>TODAY</Text>
-
-        <View style={styles.todayCard}>
-          <Text style={styles.todayLabel}>Verse of the Day</Text>
-          <Text style={styles.todayArabic}>إِنَّ مَعَ الْعُسْرِ يُسْرًا</Text>
-          <Text style={styles.todayTranslation}>
-            Indeed, with hardship comes ease. (94:6)
-          </Text>
+        <Text style={styles.sectionLabel}>VERSE OF THE DAY</Text>
+        <View style={styles.verseCard}>
+          <Text style={styles.verseArabic}>إِنَّ مَعَ الْعُسْرِ يُسْرًا</Text>
+          <Text style={styles.verseTranslation}>Indeed, with hardship comes ease.</Text>
+          <Text style={styles.verseRef}>Surah Ash-Sharh 94:6</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -75,100 +65,29 @@ export default function HomeScreen({ navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0D1117',
-  },
-  scroll: {
-    padding: 20,
-    paddingBottom: 40,
-  },
+  container: { flex: 1, backgroundColor: '#0D1117' },
+  scroll: { padding: 20, paddingBottom: 40 },
   header: {
-    alignItems: 'center',
-    paddingVertical: 24,
-    marginBottom: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: '#30363D',
+    alignItems: 'center', paddingVertical: 24, marginBottom: 24,
+    borderBottomWidth: 1, borderBottomColor: '#30363D',
   },
-  bismillah: {
-    fontSize: 18,
-    color: '#D4AF37',
-    marginBottom: 12,
-    lineHeight: 32,
-  },
-  greeting: {
-    fontSize: 22,
-    color: '#F0F0F0',
-    fontWeight: '700',
-    marginBottom: 6,
-  },
-  gregorian: {
-    fontSize: 13,
-    color: '#8B949E',
-    marginBottom: 4,
-  },
-  hijri: {
-    fontSize: 15,
-    color: '#D4AF37',
-    fontWeight: '600',
-  },
-  sectionLabel: {
-    fontSize: 11,
-    color: '#8B949E',
-    letterSpacing: 1.5,
-    marginBottom: 12,
-    marginTop: 4,
-  },
-  grid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 12,
-    marginBottom: 28,
-  },
+  bismillah: { fontSize: 18, color: '#D4AF37', marginBottom: 12, lineHeight: 32 },
+  greeting: { fontSize: 22, color: '#F0F0F0', fontWeight: '700', marginBottom: 6 },
+  gregorian: { fontSize: 13, color: '#8B949E', marginBottom: 4 },
+  hijri: { fontSize: 15, color: '#D4AF37', fontWeight: '600' },
+  sectionLabel: { fontSize: 11, color: '#8B949E', letterSpacing: 1.5, marginBottom: 12, marginTop: 4 },
+  grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginBottom: 28 },
   card: {
-    width: '47%',
-    backgroundColor: '#161B22',
-    borderRadius: 14,
-    padding: 20,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#30363D',
+    width: '47%', backgroundColor: '#161B22', borderRadius: 14, padding: 20,
+    alignItems: 'center', borderWidth: 1, borderColor: '#30363D',
   },
-  cardIcon: {
-    fontSize: 28,
-    marginBottom: 8,
+  cardIcon: { fontSize: 28, marginBottom: 8 },
+  cardLabel: { fontSize: 13, color: '#F0F0F0', fontWeight: '600', textAlign: 'center' },
+  verseCard: {
+    backgroundColor: '#161B22', borderRadius: 14, padding: 20,
+    borderWidth: 1, borderColor: '#30363D', borderLeftWidth: 3, borderLeftColor: '#D4AF37',
   },
-  cardLabel: {
-    fontSize: 13,
-    color: '#F0F0F0',
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-  todayCard: {
-    backgroundColor: '#161B22',
-    borderRadius: 14,
-    padding: 20,
-    borderWidth: 1,
-    borderColor: '#30363D',
-    borderLeftWidth: 3,
-    borderLeftColor: '#D4AF37',
-  },
-  todayLabel: {
-    fontSize: 11,
-    color: '#8B949E',
-    letterSpacing: 1,
-    marginBottom: 12,
-  },
-  todayArabic: {
-    fontSize: 22,
-    color: '#D4AF37',
-    textAlign: 'right',
-    lineHeight: 40,
-    marginBottom: 10,
-  },
-  todayTranslation: {
-    fontSize: 14,
-    color: '#8B949E',
-    lineHeight: 22,
-  },
+  verseArabic: { fontSize: 22, color: '#D4AF37', textAlign: 'right', lineHeight: 40, marginBottom: 10 },
+  verseTranslation: { fontSize: 14, color: '#F0F0F0', lineHeight: 22, marginBottom: 6 },
+  verseRef: { fontSize: 12, color: '#8B949E' },
 });

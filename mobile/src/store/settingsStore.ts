@@ -1,20 +1,6 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
-import { MMKV } from 'react-native-mmkv';
-
-const storage = new MMKV();
-
-function load<T>(key: string, fallback: T): T {
-  try {
-    const val = storage.getString(key);
-    return val ? (JSON.parse(val) as T) : fallback;
-  } catch {
-    return fallback;
-  }
-}
-
-function save(key: string, val: unknown): void {
-  storage.set(key, JSON.stringify(val));
-}
+import { createJSONStorage, persist } from 'zustand/middleware';
 
 interface SettingsState {
   theme: 'light' | 'dark' | 'system';
@@ -39,56 +25,34 @@ interface SettingsState {
   setOnboardingComplete: () => void;
 }
 
-export const useSettingsStore = create<SettingsState>((set) => ({
-  theme: load('theme', 'system'),
-  language: load('language', 'en'),
-  translationEdition: load('translationEdition', 'en.sahih'),
-  reciterEdition: load('reciterEdition', 'ar.alafasy'),
-  arabicScript: load('arabicScript', 'uthmani'),
-  tajweedMode: load('tajweedMode', false),
-  prayerMethod: load('prayerMethod', 2),
-  madhab: load('madhab', 1),
-  hijriOffset: load('hijriOffset', 0),
-  hasCompletedOnboarding: load('hasCompletedOnboarding', false),
+export const useSettingsStore = create<SettingsState>()(
+  persist(
+    (set) => ({
+      theme: 'system',
+      language: 'en',
+      translationEdition: 'en.sahih',
+      reciterEdition: 'ar.alafasy',
+      arabicScript: 'uthmani',
+      tajweedMode: false,
+      prayerMethod: 2,
+      madhab: 1,
+      hijriOffset: 0,
+      hasCompletedOnboarding: false,
 
-  setTheme: (theme) => {
-    save('theme', theme);
-    set({ theme });
-  },
-  setLanguage: (language) => {
-    save('language', language);
-    set({ language });
-  },
-  setTranslationEdition: (translationEdition) => {
-    save('translationEdition', translationEdition);
-    set({ translationEdition });
-  },
-  setReciterEdition: (reciterEdition) => {
-    save('reciterEdition', reciterEdition);
-    set({ reciterEdition });
-  },
-  setArabicScript: (arabicScript) => {
-    save('arabicScript', arabicScript);
-    set({ arabicScript });
-  },
-  setTajweedMode: (tajweedMode) => {
-    save('tajweedMode', tajweedMode);
-    set({ tajweedMode });
-  },
-  setPrayerMethod: (prayerMethod) => {
-    save('prayerMethod', prayerMethod);
-    set({ prayerMethod });
-  },
-  setMadhab: (madhab) => {
-    save('madhab', madhab);
-    set({ madhab });
-  },
-  setHijriOffset: (hijriOffset) => {
-    save('hijriOffset', hijriOffset);
-    set({ hijriOffset });
-  },
-  setOnboardingComplete: () => {
-    save('hasCompletedOnboarding', true);
-    set({ hasCompletedOnboarding: true });
-  },
-}));
+      setTheme: (theme) => set({ theme }),
+      setLanguage: (language) => set({ language }),
+      setTranslationEdition: (translationEdition) => set({ translationEdition }),
+      setReciterEdition: (reciterEdition) => set({ reciterEdition }),
+      setArabicScript: (arabicScript) => set({ arabicScript }),
+      setTajweedMode: (tajweedMode) => set({ tajweedMode }),
+      setPrayerMethod: (prayerMethod) => set({ prayerMethod }),
+      setMadhab: (madhab) => set({ madhab }),
+      setHijriOffset: (hijriOffset) => set({ hijriOffset }),
+      setOnboardingComplete: () => set({ hasCompletedOnboarding: true }),
+    }),
+    {
+      name: 'settings-store',
+      storage: createJSONStorage(() => AsyncStorage),
+    }
+  )
+);
