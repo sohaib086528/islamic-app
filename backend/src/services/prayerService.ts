@@ -12,16 +12,16 @@ function todayString() {
 }
 
 export const prayerService = {
-  async getTimingsByCoords(lat: number, lng: number, method = 2) {
+  async getTimingsByCoords(lat: number, lng: number, method = 2, school = 0) {
     const { data } = await api.get(`/timings/${todayString()}`, {
-      params: { latitude: lat, longitude: lng, method },
+      params: { latitude: lat, longitude: lng, method, school },
     });
     return data.data;
   },
 
-  async getTimingsByCity(city: string, country: string, method = 2) {
+  async getTimingsByCity(city: string, country: string, method = 2, school = 0) {
     const { data } = await api.get(`/timingsByCity/${todayString()}`, {
-      params: { city, country, method },
+      params: { city, country, method, school },
     });
     return data.data;
   },

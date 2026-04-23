@@ -41,6 +41,7 @@ export const prayerApi = {
     city?: string;
     country?: string;
     method?: number;
+    school?: number;
   }) => apiClient.get('/prayer/times', { params }).then((r) => r.data.data),
 
   getMethods: () => apiClient.get('/prayer/methods').then((r) => r.data.data),

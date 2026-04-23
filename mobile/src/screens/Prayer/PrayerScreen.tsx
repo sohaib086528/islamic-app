@@ -16,7 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const PRAYERS = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
 
 export default function PrayerScreen() {
-  const { prayerMethod } = useSettingsStore();
+  const { prayerMethod, madhab } = useSettingsStore();
   const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
   const [locationError, setLocationError] = useState(false);
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
@@ -38,8 +38,14 @@ export default function PrayerScreen() {
   }, []);
 
   const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ['prayerTimes', coords?.lat, coords?.lng, prayerMethod],
-    queryFn: () => prayerApi.getTimings({ lat: coords!.lat, lng: coords!.lng, method: prayerMethod }),
+    queryKey: ['prayerTimes', coords?.lat, coords?.lng, prayerMethod, madhab],
+    queryFn: () =>
+      prayerApi.getTimings({
+        lat: coords!.lat,
+        lng: coords!.lng,
+        method: prayerMethod,
+        school: madhab,
+      }),
     enabled: !!coords,
     staleTime: 1000 * 60 * 30,
   });
@@ -148,7 +154,7 @@ export default function PrayerScreen() {
         </View>
 
         <Text style={styles.methodText}>
-          Method: {meta?.method?.name}
+          Method: {meta?.method?.name} · {madhab === 1 ? 'Shafi\'i' : 'Hanafi'}
         </Text>
       </ScrollView>
     </SafeAreaView>

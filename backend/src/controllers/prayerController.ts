@@ -4,13 +4,16 @@ import { prayerService } from '../services/prayerService';
 export const prayerController = {
   getTimings: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { lat, lng, city, country, method } = req.query;
+      const { lat, lng, city, country, method, school } = req.query;
+      const parsedMethod = method ? parseInt(method as string, 10) : 2;
+      const parsedSchool = school ? parseInt(school as string, 10) : 0;
 
       if (lat && lng) {
         const data = await prayerService.getTimingsByCoords(
           parseFloat(lat as string),
           parseFloat(lng as string),
-          method ? parseInt(method as string) : 2
+          parsedMethod,
+          parsedSchool
         );
         return res.json({ success: true, data });
       }
@@ -19,7 +22,8 @@ export const prayerController = {
         const data = await prayerService.getTimingsByCity(
           city as string,
           country as string,
-          method ? parseInt(method as string) : 2
+          parsedMethod,
+          parsedSchool
         );
         return res.json({ success: true, data });
       }

@@ -1,15 +1,17 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import {
   View, Text, StyleSheet, FlatList, TouchableOpacity,
-  SafeAreaView, ActivityIndicator, Switch, ScrollView,
+  SafeAreaView, ActivityIndicator, Switch, Alert,
 } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
 import { quranApi } from '../../services/api';
 import { useSettingsStore } from '../../store/settingsStore';
+import { useBookmarksStore } from '../../store/bookmarksStore';
 
 export default function SurahReaderScreen({ route, navigation }: any) {
   const { surahId, surahName } = route.params;
-  const { translationEdition, arabicScript } = useSettingsStore();
+  const { translationEdition } = useSettingsStore();
+  const { addBookmark, isBookmarked, removeBookmark } = useBookmarksStore();
   const [showTranslation, setShowTranslation] = useState(true);
   const [arabicSize, setArabicSize] = useState(24);
 
@@ -37,6 +39,24 @@ export default function SurahReaderScreen({ route, navigation }: any) {
 
   const ayahs = data.arabic?.ayahs || [];
   const translations = data.translation?.ayahs || [];
+
+  function toggleBookmark(item: any) {
+    const ayahNumber = item.numberInSurah;
+    if (isBookmarked(surahId, ayahNumber)) {
+      removeBookmark(surahId, ayahNumber);
+      Alert.alert('Bookmark removed', `${surahName} ayah ${ayahNumber} was removed.`);
+      return;
+    }
+
+    addBookmark({
+      surahId,
+      surahName,
+      ayahNumber,
+      ayahText: item.text,
+      savedAt: Date.now(),
+    });
+    Alert.alert('Bookmarked', `${surahName} ayah ${ayahNumber} was saved.`);
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -80,7 +100,11 @@ export default function SurahReaderScreen({ route, navigation }: any) {
         keyExtractor={(item: any) => item.numberInSurah.toString()}
         contentContainerStyle={styles.listContent}
         renderItem={({ item, index }: any) => (
-          <View style={styles.ayahCard}>
+          <TouchableOpacity
+            style={styles.ayahCard}
+            activeOpacity={0.95}
+            onLongPress={() => toggleBookmark(item)}
+          >
             <View style={styles.ayahNumber}>
               <Text style={styles.ayahNumberText}>{item.numberInSurah}</Text>
             </View>
@@ -92,7 +116,7 @@ export default function SurahReaderScreen({ route, navigation }: any) {
                 {translations[index].text}
               </Text>
             )}
-          </View>
+          </TouchableOpacity>
         )}
       />
     </SafeAreaView>
